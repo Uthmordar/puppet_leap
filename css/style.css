@@ -65,18 +65,23 @@ img.left,img.right,img.start,img.end{margin-bottom:0.5em;}
 .visually-hidden{*clip:rect(1px 1px 1px 1px);}
 .hidden{display:none;}
 
+.aside{position:absolute;top:50px;right:20px;}
+.aside img{margin-top:30px;}
+
+body{background-image:url(../img/bg.jpg);background-size:contain;}
+
 #body{position:absolute;top:150px;left:600px;width:700px;height:600px;-webkit-transition:all 2s;-moz-transition:all 2s;transition:all 2s;}
 #body.active-left{-webkit-transform:rotate3d(0,1,0,180deg);-moz-transform:rotate3d(0,1,0,180deg);transform:rotate3d(0,1,0,180deg);}
 #body.active-up{-webkit-transform:rotate3d(1,0,0,180deg);-moz-transform:rotate3d(1,0,0,180deg);transform:rotate3d(1,0,0,180deg);}
 
-#body .head{position:absolute;width:40px;height:40px;background:#000;border-radius:50%;left:230px;top:70px;}
+#body .head{position:absolute;width:40px;height:40px;/*background:#000;border-radius:50%;*/background:url(../img/head_puppet.png) no-repeat center center;left:240px;top:90px;z-index:1;}
 #body .elbow{position:absolute;width:10px;height:10px;background:teal;border-radius:50%;}
 #body .elbow.left{left:90px;top:65px;}
 #body .elbow.right{left:150px;top:65px;}
 #body .hand{position:absolute;width:12px;height:12px;background:green;border-radius:50%;}
 #body .hand.left{left:80px;top:90px;}
 #body .hand.right{left:160px;top:90px;}
-#body .pelv{position:absolute;width:40px;height:30px;background:#000;border-radius:50%;left:230px;top:220px;}
+#body .pelv{position:absolute;width:46px;height:52px;/*background:#000;*/background:url(../img/pelv_puppet.png) no-repeat center center;border-radius:50%;left:237px;top:258px;z-index:1;}
 #body .knee{position:absolute;width:10px;height:10px;background:blue;border-radius:50%;}
 #body .knee.left{left:95px;top:140px;}
 #body .knee.right{left:145px;top:140px;}
@@ -84,18 +89,25 @@ img.left,img.right,img.start,img.end{margin-bottom:0.5em;}
 #body .foot.left{left:85px;top:170px;}
 #body .foot.right{left:155px;top:170px;}
 
-#body .head.active{-webkit-animation:shakeHead 1s infinite;-moz-animation:shakeHead 1s infinite;animation:shakeHead 1s infinite;}
+#body .head.active{-webkit-animation:shakeHead 1.3s infinite;-moz-animation:shakeHead 1.3s infinite;animation:shakeHead 1.3s infinite;}
+/*@-webkit-keyframes shakeHead{
+    0%   {left:240px;top:90px;}
+    25%  {left:228px;top:98px;}
+    50%  {left:240px;top:100px;}
+    75%  {left:256px;top:94px;}
+    100% {left:240px;top:90px;}
+}*/
 @-webkit-keyframes shakeHead{
-    0%   {left:230px;top:70px;}
-    25%  {left:218px;top:78px;}
-    50%  {left:230px;top:80px;}
-    75%  {left:246px;top:74px;}
-    100% {left:230px;top:70px;}
+    0%   {-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);transform:rotate(0deg);}
+    25%  {-webkit-transform:rotate(18deg);-moz-transform:rotate(18deg);transform:rotate(18deg);}
+    50%  {-webkit-transform:rotate(3deg);-moz-transform:rotate(3deg);transform:rotate(3deg);}
+    75%  {-webkit-transform:rotate(-12deg);-moz-transform:rotate(-12deg);transform:rotate(-12deg);}
+    100% {-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);transform:rotate(0deg);}
 }
 #body .pelv.active{-webkit-animation:shakePelv 2s infinite;-moz-animation:shakePelv 2s infinite;animation:shakePelv 2s infinite;}
 @-webkit-keyframes shakePelv{
     0%   {-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);transform:rotate(0deg);}
-    25%  {-webkit-transform:rotate(30deg);-moz-transform:rotate(30deg);transform:rotate(30deg);}
-    55%  {-webkit-transform:rotate(-35deg);-moz-transform:rotate(-35deg);transform:rotate(-35deg);}
+    25%  {-webkit-transform:rotate(12deg);-moz-transform:rotate(12deg);transform:rotate(12deg);}
+    55%  {-webkit-transform:rotate(-15deg);-moz-transform:rotate(-15deg);transform:rotate(-15deg);}
     100% {-webkit-transform:rotate(0deg);-moz-tranform:rotate(0deg);transform:rotate(0deg);}
 } 

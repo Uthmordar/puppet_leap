@@ -10,7 +10,7 @@ requirejs.config({
     }
 });
 
-require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, canvas) {
+require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, canvas){
     'use strict';
 
     var controller=new Leap.Controller({
@@ -23,22 +23,23 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
   // ====================
     var canvasNode={
         left: {
-            hand: {left: 160, top: 180},
-            elbow: {left: 180, top: 130},
-            knee: {left: 190, top: 280},
-            foot: {left: 170, top: 340},
-            shoulder: {left: 210, top: 100},
-            head: {left: 230, top: 70}
+            hand: {left: 170, top: 210},
+            elbow: {left: 190, top: 160},
+            knee: {left: 200, top: 310},
+            foot: {left: 180, top: 370},
+            shoulder: {left: 230, top: 130},
+            head: {left: 240, top: 100}
         },
         right: {
-            hand: {left: 320, top: 180},
-            elbow: {left: 150, top: 130},
-            knee: {left: 190, top: 280},
-            foot: {left: 310, top: 340},
-            shoulder: {left: 290, top: 100},
-            pelv: {left: 250, top: 234}
+            hand: {left: 330, top: 210},
+            elbow: {left: 310, top: 160},
+            knee: {left: 300, top: 310},
+            foot: {left: 320, top: 370},
+            shoulder: {left: 290, top: 130},
+            pelv: {left: 260, top: 264}
         }
     };
+    utils.drawSkeleton(canvasNode);
     controller.on('frame', function(frame) {
         canvas.context.clearRect(0,0,canvas.el.width,canvas.el.height);
         var gesture, isHorizontal, state='stop', hand, finger, fingerPosition;
@@ -104,13 +105,8 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
                             }else{
                                 $(puppet.$head).removeClass('active');
                             }
-                        }else{
-                            //$(puppet.fingerMove.fingerClass).css({'left': puppet.fingerMove.moveX+'px', 'top': puppet.fingerMove.moveY+'px'});
-                            canvas.context.fillStyle = puppet.fingerMove.color;
-                            canvas.context.beginPath();
-                            canvas.context.arc(puppet.fingerMove.moveX, puppet.fingerMove.moveY, 16, 0, Math.PI*2, true);
-                            canvas.context.fill();
-                            canvas.context.closePath();
+                        }else{                            
+                            utils.drawNode(puppet.fingerMove.color, puppet.fingerMove.moveX, puppet.fingerMove.moveY, 16);
                         }
                     }else{
                         switch (finger.type){
@@ -154,71 +150,13 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
                                 $(puppet.$pelv).removeClass('active');
                             }
                         }else{
-                            //$(puppet.fingerMove.fingerClass).css({'left': puppet.fingerMove.moveX+'px', 'top': puppet.fingerMove.moveY+'px'});
-                            canvas.context.fillStyle =  puppet.fingerMove.color;
-                            canvas.context.beginPath();
-                            canvas.context.arc(puppet.fingerMove.moveX, puppet.fingerMove.moveY, 16, 0, Math.PI*2, true);
-                            canvas.context.fill();
-                            canvas.context.closePath();
+                            utils.drawNode(puppet.fingerMove.color, puppet.fingerMove.moveX, puppet.fingerMove.moveY, 16);
                         }
                     } 
                 }
             }
         }
-        //utils.drawSkeleton(canvasNode);
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.left.hand.left, canvasNode.left.hand.top);
-        canvas.context.lineTo(canvasNode.left.elbow.left, canvasNode.left.elbow.top);
-        canvas.context.lineWidth = 5;
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.right.hand.left, canvasNode.right.hand.top);
-        canvas.context.lineTo(canvasNode.right.elbow.left, canvasNode.right.elbow.top);
-        canvas.context.lineWidth = 5;
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.left.foot.left, canvasNode.left.foot.top);
-        canvas.context.lineTo(canvasNode.left.knee.left, canvasNode.left.knee.top);
-        canvas.context.lineWidth = 5;
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.right.foot.left, canvasNode.right.foot.top);
-        canvas.context.lineTo(canvasNode.right.knee.left, canvasNode.right.knee.top);
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.right.knee.left, canvasNode.right.knee.top);
-        canvas.context.lineTo(canvasNode.right.pelv.left, canvasNode.right.pelv.top);
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.left.knee.left, canvasNode.left.knee.top);
-        canvas.context.lineTo(canvasNode.right.pelv.left, canvasNode.right.pelv.top);
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.left.elbow.left, canvasNode.left.elbow.top);
-        canvas.context.lineTo(canvasNode.left.shoulder.left, canvasNode.left.shoulder.top);
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.right.elbow.left, canvasNode.right.elbow.top);
-        canvas.context.lineTo(canvasNode.right.shoulder.left, canvasNode.right.shoulder.top);
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.left.shoulder.left, canvasNode.left.shoulder.top);
-        canvas.context.lineTo(canvasNode.right.shoulder.left, canvasNode.right.shoulder.top);
-        canvas.context.stroke();
-        canvas.context.closePath();
-        canvas.context.beginPath();
-        canvas.context.moveTo(canvasNode.right.pelv.left, canvasNode.right.pelv.top);
-        canvas.context.lineTo((canvasNode.right.shoulder.left + canvasNode.left.shoulder.left)*0.5, canvasNode.right.shoulder.top);
-        canvas.context.stroke();
-        canvas.context.closePath();
+        utils.drawSkeleton(canvasNode);
         if(frame.hands.length===1){
             hand=frame.hands[0];
             if(hand.type==='left'){
