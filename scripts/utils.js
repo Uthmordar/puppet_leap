@@ -1,4 +1,4 @@
-define(['puppet'], function(puppet) {
+define(['puppet', 'canvas'], function(puppet, canvas) {
     'use strict';
     return {
         LeapToScene2 : function(frame, positionTbl) {
@@ -23,7 +23,8 @@ define(['puppet'], function(puppet) {
             return {
                 fingerClass:id,
                 moveX:node.leftInit -(node.left- fingerPosition.x),
-                moveY:node.topInit-(node.top- fingerPosition.y)
+                moveY:node.topInit-(node.top- fingerPosition.y),
+                color: node.color
             };
         },
         initFinger: function(finger, fingerPosition, side){
@@ -80,6 +81,31 @@ define(['puppet'], function(puppet) {
                 }
                 puppet.fingerInit.right.init+=0.2;
             }
+        },
+        drawSkeleton: function(canvasNode){
+            canvas.context.lineWidth = 5;
+            this.drawLine(canvasNode.left.hand, canvasNode.left.elbow);
+            this.drawLine(canvasNode.right.hand, canvasNode.right.elbow);
+            this.drawLine(canvasNode.left.foot, canvasNode.left.knee);
+            this.drawLine(canvasNode.right.foot, canvasNode.right.knee);
+            this.drawLine(canvasNode.right.knee, canvasNode.right.pelv);
+            this.drawLine(canvasNode.left.knee, canvasNode.right.pelv);
+            this.drawLine(canvasNode.left.elbow, canvasNode.left.shoulder);
+            this.drawLine(canvasNode.right.elbow, canvasNode.right.shoulder);
+            this.drawLine(canvasNode.left.shoulder, canvasNode.right.shoulder);
+            this.drawLine(canvasNode.left.hand, canvasNode.left.elbow);
+            canvas.context.beginPath();
+            canvas.context.moveTo(canvasNode.right.pelv.left, canvasNode.right.pelv.top);
+            canvas.context.lineTo((canvasNode.right.shoulder.left + canvasNode.left.shoulder.left)*0.5, canvasNode.right.shoulder.top);
+            canvas.context.stroke();
+            canvas.context.closePath();    
+        },
+        drawLine: function(canvasNodeStart, canvasNodeEnd){
+            canvas.context.beginPath();
+            canvas.context.moveTo(canvasNodeStart.left, canvasNodeStart.top);
+            canvas.context.lineTo(canvasNodeEnd.left, canvasNodeEnd.top);
+            canvas.context.stroke();
+            canvas.context.closePath();
         }
     };
 });

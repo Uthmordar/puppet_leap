@@ -65,18 +65,18 @@ img.left,img.right,img.start,img.end{margin-bottom:0.5em;}
 .visually-hidden{*clip:rect(1px 1px 1px 1px);}
 .hidden{display:none;}
 
-#body{position:absolute;top:100px;left:100px;width:250px;height:250px;-webkit-transition:all 2s;-moz-transition:all 2s;transition:all 2s;}
+#body{position:absolute;top:150px;left:600px;width:700px;height:600px;-webkit-transition:all 2s;-moz-transition:all 2s;transition:all 2s;}
 #body.active-left{-webkit-transform:rotate3d(0,1,0,180deg);-moz-transform:rotate3d(0,1,0,180deg);transform:rotate3d(0,1,0,180deg);}
 #body.active-up{-webkit-transform:rotate3d(1,0,0,180deg);-moz-transform:rotate3d(1,0,0,180deg);transform:rotate3d(1,0,0,180deg);}
 
-#body .head{position:absolute;width:20px;height:20px;background:#000;border-radius:50%;left:115px;top:35px;}
+#body .head{position:absolute;width:40px;height:40px;background:#000;border-radius:50%;left:230px;top:70px;}
 #body .elbow{position:absolute;width:10px;height:10px;background:teal;border-radius:50%;}
 #body .elbow.left{left:90px;top:65px;}
 #body .elbow.right{left:150px;top:65px;}
 #body .hand{position:absolute;width:12px;height:12px;background:green;border-radius:50%;}
 #body .hand.left{left:80px;top:90px;}
 #body .hand.right{left:160px;top:90px;}
-#body .pelv{position:absolute;width:20px;height:15px;background:#000;border-radius:50%;left:115px;top:110px;}
+#body .pelv{position:absolute;width:40px;height:30px;background:#000;border-radius:50%;left:230px;top:220px;}
 #body .knee{position:absolute;width:10px;height:10px;background:blue;border-radius:50%;}
 #body .knee.left{left:95px;top:140px;}
 #body .knee.right{left:145px;top:140px;}
@@ -86,11 +86,11 @@ img.left,img.right,img.start,img.end{margin-bottom:0.5em;}
 
 #body .head.active{-webkit-animation:shakeHead 1s infinite;-moz-animation:shakeHead 1s infinite;animation:shakeHead 1s infinite;}
 @-webkit-keyframes shakeHead{
-    0%   {left:115px;top:35px;}
-    25%  {left:109px;top:38px;}
-    50%  {left:115px;top:40px;}
-    75%  {left:123px;top:37px;}
-    100% {left:115px;top:35px;}
+    0%   {left:230px;top:70px;}
+    25%  {left:218px;top:78px;}
+    50%  {left:230px;top:80px;}
+    75%  {left:246px;top:74px;}
+    100% {left:230px;top:70px;}
 }
 #body .pelv.active{-webkit-animation:shakePelv 2s infinite;-moz-animation:shakePelv 2s infinite;animation:shakePelv 2s infinite;}
 @-webkit-keyframes shakePelv{

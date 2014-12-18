@@ -15,18 +15,18 @@ define([], function() {
         fingerInit:{
             left:{
                 init:0,
-                foot:{left: 0, top: 0, leftInit: 85, topInit: 170},
-                knee:{left: 0, top: 0, leftInit: 95, topInit: 140},
-                elbow:{left: 0, top: 0, leftInit: 90, topInit: 65},
-                hand:{left: 0, top: 0, leftInit: 80, topInit: 90},
+                foot:{left: 0, top: 0, leftInit: 170, topInit: 340, color: 'aqua'},
+                knee:{left: 0, top: 0, leftInit: 190, topInit: 280, color: 'blue'},
+                elbow:{left: 0, top: 0, leftInit: 180, topInit: 130, color: 'teal'},
+                hand:{left: 0, top: 0, leftInit: 160, topInit: 180, color: 'green'},
                 head:{left: 0, top: 0, active: 0}
             },
             right:{
                 init:0,
-                foot:{left: 0, top: 0, leftInit: 155, topInit: 170},
-                knee:{left: 0, top: 0, leftInit: 145, topInit: 140},
-                elbow:{left: 0, top: 0, leftInit: 150, topInit: 65},
-                hand:{left: 0, top: 0, leftInit: 160, topInit: 90},
+                foot:{left: 0, top: 0, leftInit: 310, topInit: 340, color: 'aqua'},
+                knee:{left: 0, top: 0, leftInit: 290, topInit: 280, color: 'blue'},
+                elbow:{left: 0, top: 0, leftInit: 300, topInit: 130, color: 'teal'},
+                hand:{left: 0, top: 0, leftInit: 320, topInit: 180, color: 'green'},
                 pelv:{left: 0, top: 0, active: 0}
             }
         }
