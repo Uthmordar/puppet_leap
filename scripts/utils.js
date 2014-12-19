@@ -110,19 +110,19 @@ define(['puppet', 'canvas'], function(puppet, canvas) {
             canvas.context.lineWidth = 10;
             canvas.context.strokeStyle = '#5c5930';
             canvas.context.fillStyle = '#5c5930';
-            this.drawLine(canvasNode.left.hand, canvasNode.left.elbow);
-            this.drawLine(canvasNode.right.hand, canvasNode.right.elbow);
-            this.drawLine(canvasNode.left.foot, canvasNode.left.knee);
-            this.drawLine(canvasNode.right.foot, canvasNode.right.knee);
-            this.drawLine(canvasNode.right.knee, canvasNode.right.pelv);
-            this.drawLine(canvasNode.left.knee, canvasNode.right.pelv);
-            this.drawLine(canvasNode.left.elbow, canvasNode.left.shoulder);
-            this.drawLine(canvasNode.right.elbow, canvasNode.right.shoulder);
+            this.drawLineCorpse(canvasNode.left.hand, canvasNode.left.elbow);
+            this.drawLineCorpse(canvasNode.right.hand, canvasNode.right.elbow);
+            this.drawLineCorpse(canvasNode.left.foot, canvasNode.left.knee);
+            this.drawLineCorpse(canvasNode.right.foot, canvasNode.right.knee);
+            this.drawLineCorpse(canvasNode.right.knee, canvasNode.right.pelv);
+            this.drawLineCorpse(canvasNode.left.knee, canvasNode.right.pelv);
+            this.drawLineCorpse(canvasNode.left.elbow, canvasNode.left.shoulder);
+            this.drawLineCorpse(canvasNode.right.elbow, canvasNode.right.shoulder);
             canvas.context.lineWidth = 20;
             canvas.context.beginPath();
-            canvas.context.moveTo(canvasNode.left.shoulder.left,canvasNode.left.shoulder.top-3);
-            canvas.context.lineTo(canvasNode.right.shoulder.left,canvasNode.right.shoulder.top-3);
-            canvas.context.lineTo(canvasNode.right.pelv.left,canvasNode.right.pelv.top + 30);
+            canvas.context.moveTo(canvasNode.left.shoulder.left- puppet.palm.vectX,canvasNode.left.shoulder.top-3- puppet.palm.vectY);
+            canvas.context.lineTo(canvasNode.right.shoulder.left- puppet.palm.vectX,canvasNode.right.shoulder.top-3- puppet.palm.vectY);
+            canvas.context.lineTo(canvasNode.right.pelv.left- puppet.palm.vectX,canvasNode.right.pelv.top + 30- puppet.palm.vectY);
             canvas.context.closePath();
             canvas.context.fill();
         },
@@ -140,6 +140,19 @@ define(['puppet', 'canvas'], function(puppet, canvas) {
             canvas.context.closePath();
         },
         /**
+         * trace une ligne dans le canvas et conserve lien entre les parties lors du mouvement
+         * @param {type} canvasNodeStart
+         * @param {type} canvasNodeEnd
+         * @returns {undefined}
+         */
+        drawLineCorpse: function(canvasNodeStart, canvasNodeEnd){
+            canvas.context.beginPath();
+            canvas.context.moveTo(canvasNodeStart.left-puppet.palm.vectX, canvasNodeStart.top-puppet.palm.vectY);
+            canvas.context.lineTo(canvasNodeEnd.left-puppet.palm.vectX, canvasNodeEnd.top-puppet.palm.vectY);
+            canvas.context.stroke();
+            canvas.context.closePath();
+        },
+        /**
          * dessine un node
          * @param {type} color
          * @param {type} nodeX
@@ -150,9 +163,13 @@ define(['puppet', 'canvas'], function(puppet, canvas) {
         drawNode: function(color, nodeX, nodeY, width){
             canvas.context.fillStyle = color;
             canvas.context.beginPath();
-            canvas.context.arc(nodeX, nodeY, width, 0, Math.PI*2, true);
+            canvas.context.arc(nodeX-puppet.palm.vectX,nodeY-puppet.palm.vectY, width, 0, Math.PI*2, true);
             canvas.context.fill();
             canvas.context.closePath();
+        },
+        moveSkeleton: function(moyX, moyY){
+            puppet.palm.vectX = ((puppet.palm.left.leftInit + puppet.palm.right.leftInit)*0.5 - moyX)*1.2;
+            puppet.palm.vectY = ((puppet.palm.left.topInit + puppet.palm.right.topInit)*0.5 - moyY)*1.2;
         }
     };
 });

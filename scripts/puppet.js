@@ -19,7 +19,7 @@ define([], function() {
                 knee:{left: 0, top: 0, leftInit: 615, topInit: 625, color: 'blue'},
                 elbow:{left: 0, top: 0, leftInit: 610, topInit: 465, color: 'green'},
                 hand:{left: 0, top: 0, leftInit: 670, topInit: 525, color: 'teal'},
-                head:{left: 0, top: 0, active: 0}
+                head:{left: 0, top: 0, leftInit: 666, topInit: 355, active: 0}
             },
             right:{
                 init:0,
@@ -27,7 +27,7 @@ define([], function() {
                 knee:{left: 0, top: 0, leftInit: 760, topInit: 615, color: 'blue'},
                 elbow:{left: 0, top: 0, leftInit: 750, topInit: 465, color: 'green'},
                 hand:{left: 0, top: 0, leftInit: 830, topInit: 475, color: 'teal'},
-                pelv:{left: 0, top: 0, active: 0}
+                pelv:{left: 0, top: 0, leftInit: 666, topInit: 530, active: 0}
             }
         },
         canvasNode:{
@@ -47,6 +47,18 @@ define([], function() {
                 shoulder: {left: 730, top: 405},
                 pelv: {left: 700, top: 529}
             }
+        },
+        palm:{
+            left:{
+                leftInit: 0,
+                topInit: 0
+            },
+            right:{
+                leftInit: 0,
+                topInit: 0
+            },
+            vectX: 0,
+            vectY: 0
         }
     };
 });

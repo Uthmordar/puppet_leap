@@ -24,15 +24,35 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
     utils.drawSkeleton(puppet.canvasNode);
     controller.on('frame', function(frame) {
         canvas.context.clearRect(0,0,canvas.el.width,canvas.el.height);
-        var gesture, isHorizontal, state='stop', hand, finger, fingerPosition;
+        var gesture, isHorizontal, state='stop', hand, finger, fingerPosition, handX=0, handY=0, vectMove=null;
+        if(puppet.initPuppet===1){
+            for(var j=0; j<frame.hands.length; j++){
+                hand=frame.hands[j];
+                var pos=utils.LeapToScene(frame, hand.palmPosition);
+                handX+=pos.x;
+                handY+=pos.y;
+            }
+            if(puppet.fingerInit.right.init===1 || puppet.fingerInit.left.init===1){
+                vectMove=utils.moveSkeleton(handX/frame.hands.length, handY/frame.hands.length);
+            }
+        }
         for(var j=0; j<frame.hands.length; j++){
             hand=frame.hands[j];
-            if(hand.type==='left'){
+            if(hand){
                 /*var pos=utils.LeapToScene(frame, hand.palmPosition);
                 puppet.$body.css({'left': pos.x+'px', 'top': pos.y+'px'});*/
             }
             if(hand && puppet.initPuppet===1){
                 if(puppet.fingerInit.left.init===0 || puppet.fingerInit.right.init===0){
+                    var pos=utils.LeapToScene(frame, hand.palmPosition);
+                    if(puppet.fingerInit.left.init<1){
+                        puppet.palm.left.leftInit=pos.x;
+                        puppet.palm.left.topInit=pos.y;
+                    }
+                    if(puppet.fingerInit.right.init<1){
+                        puppet.palm.right.leftInit=pos.x;
+                        puppet.palm.right.topInit=pos.y;
+                    }
                     for(var i=0;i<hand.fingers.length; i++){
                         finger=hand.fingers[i];
                         fingerPosition=utils.LeapToScene(frame,finger.stabilizedTipPosition);
@@ -87,6 +107,7 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
                             }else{
                                 $(puppet.$head).removeClass('active');
                             }
+                            puppet.$head.css({'left': puppet.fingerInit.left.head.leftInit - puppet.palm.vectX +'px', 'top': puppet.fingerInit.left.head.topInit - puppet.palm.vectY +'px'});
                         }else{                            
                             utils.drawNode(puppet.fingerMove.color, puppet.fingerMove.moveX, puppet.fingerMove.moveY, 16);
                         }
@@ -131,6 +152,7 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
                             }else{
                                 $(puppet.$pelv).removeClass('active');
                             }
+                            puppet.$pelv.css({'left': puppet.fingerInit.right.pelv.leftInit - puppet.palm.vectX +'px', 'top': puppet.fingerInit.right.pelv.topInit - puppet.palm.vectY +'px'});
                         }else{
                             utils.drawNode(puppet.fingerMove.color, puppet.fingerMove.moveX, puppet.fingerMove.moveY, 16);
                         }
@@ -143,8 +165,12 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
             hand=frame.hands[0];
             if(hand.type==='left'){
                 puppet.fingerInit.right.init=0;
+                puppet.palm.right.leftInit=0;
+                puppet.palm.right.topInit=0;
             }else{
                 puppet.fingerInit.left.init=0;
+                puppet.palm.left.leftInit=0;
+                puppet.palm.left.topInit=0;
             }
         }else if(frame.hands.length===0){
             puppet.fingerInit.right.init=0;
