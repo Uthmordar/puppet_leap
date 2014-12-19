@@ -73,21 +73,14 @@ li{font-size:1.6rem; line-height: 3rem;}
 
 body{background-image:url(../img/bg.png);background-size:cover;}
 
-#body{position:absolute;top:0;left:0;width:700px;height:600px;-webkit-transition:all 2s;-moz-transition:all 2s;transition:all 2s;}
+#body{position:absolute;top:10px;left:100px;width:700px;height:900px;-webkit-transition:all 2s;-moz-transition:all 2s;transition:all 2s;}
 #body.active-left{-webkit-transform:rotate3d(0,1,0,180deg);-moz-transform:rotate3d(0,1,0,180deg);transform:rotate3d(0,1,0,180deg);}
 #body.active-up{-webkit-transform:rotate3d(1,0,0,180deg);-moz-transform:rotate3d(1,0,0,180deg);transform:rotate3d(1,0,0,180deg);}
 
-#body .head{position:absolute;width:50px;height:50px;/*background:#000;border-radius:50%;*/background:url(../img/head_puppet.png) no-repeat center center;left:238px;top:80px;z-index:1;}
-#body .pelv{position:absolute;width:66px;height:75px;/*background:#000;*/background:url(../img/pelv_puppet.png) no-repeat center center;border-radius:50%;left:226px;top:256px;z-index:1;}
+#body .head{position:absolute;width:50px;height:50px;/*background:#000;border-radius:50%;*/background:url(../img/head_puppet.png) no-repeat center center;left:666px;top:355px;z-index:1;}
+#body .pelv{position:absolute;width:66px;height:75px;/*background:#000;*/background:url(../img/pelv_puppet.png) no-repeat center center;border-radius:50%;left:666px;top:530px;z-index:1;}
 
 #body .head.active{-webkit-animation:shakeHead 1.3s infinite;-moz-animation:shakeHead 1.3s infinite;animation:shakeHead 1.3s infinite;}
-/*@-webkit-keyframes shakeHead{
-    0%   {left:240px;top:90px;}
-    25%  {left:228px;top:98px;}
-    50%  {left:240px;top:100px;}
-    75%  {left:256px;top:94px;}
-    100% {left:240px;top:90px;}
-}*/
 @-webkit-keyframes shakeHead{
     0%   {-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);transform:rotate(0deg);}
     25%  {-webkit-transform:rotate(18deg);-moz-transform:rotate(18deg);transform:rotate(18deg);}

@@ -15,37 +15,37 @@ define([], function() {
         fingerInit:{
             left:{
                 init:0,
-                foot:{left: 0, top: 0, leftInit: 180, topInit: 370, color: 'aqua'},
-                knee:{left: 0, top: 0, leftInit: 200, topInit: 310, color: 'blue'},
-                elbow:{left: 0, top: 0, leftInit: 190, topInit: 160, color: 'green'},
-                hand:{left: 0, top: 0, leftInit: 170, topInit: 210, color: 'teal'},
+                foot:{left: 0, top: 0, leftInit: 640, topInit: 695, color: 'aqua'},
+                knee:{left: 0, top: 0, leftInit: 615, topInit: 625, color: 'blue'},
+                elbow:{left: 0, top: 0, leftInit: 610, topInit: 465, color: 'green'},
+                hand:{left: 0, top: 0, leftInit: 670, topInit: 525, color: 'teal'},
                 head:{left: 0, top: 0, active: 0}
             },
             right:{
                 init:0,
-                foot:{left: 0, top: 0, leftInit: 320, topInit: 370, color: 'aqua'},
-                knee:{left: 0, top: 0, leftInit: 300, topInit: 310, color: 'blue'},
-                elbow:{left: 0, top: 0, leftInit: 310, topInit: 160, color: 'green'},
-                hand:{left: 0, top: 0, leftInit: 310, topInit: 210, color: 'teal'},
+                foot:{left: 0, top: 0, leftInit: 780, topInit: 695, color: 'aqua'},
+                knee:{left: 0, top: 0, leftInit: 760, topInit: 615, color: 'blue'},
+                elbow:{left: 0, top: 0, leftInit: 750, topInit: 465, color: 'green'},
+                hand:{left: 0, top: 0, leftInit: 830, topInit: 475, color: 'teal'},
                 pelv:{left: 0, top: 0, active: 0}
             }
         },
         canvasNode:{
             left: {
-                hand: {left: 170, top: 210},
-                elbow: {left: 190, top: 160},
-                knee: {left: 200, top: 310},
-                foot: {left: 180, top: 370},
-                shoulder: {left: 230, top: 130},
-                head: {left: 240, top: 100}
+                hand: {left: 670, top: 525},
+                elbow: {left: 610, top: 465},
+                knee: {left: 615, top: 625},
+                foot: {left: 640, top: 695},
+                shoulder: {left: 650, top: 405},
+                head: {left: 680, top: 365}
             },
             right: {
-                hand: {left: 330, top: 210},
-                elbow: {left: 310, top: 160},
-                knee: {left: 300, top: 310},
-                foot: {left: 320, top: 370},
-                shoulder: {left: 290, top: 130},
-                pelv: {left: 260, top: 264}
+                hand: {left: 830, top: 475},
+                elbow: {left: 750, top: 465},
+                knee: {left: 760, top: 615},
+                foot: {left: 780, top: 695},
+                shoulder: {left: 730, top: 405},
+                pelv: {left: 700, top: 529}
             }
         }
     };
