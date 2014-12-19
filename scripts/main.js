@@ -21,34 +21,16 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
   // ====================
   // CONTROLLER LISTENERS
   // ====================
-    var canvasNode={
-        left: {
-            hand: {left: 170, top: 210},
-            elbow: {left: 190, top: 160},
-            knee: {left: 200, top: 310},
-            foot: {left: 180, top: 370},
-            shoulder: {left: 230, top: 130},
-            head: {left: 240, top: 100}
-        },
-        right: {
-            hand: {left: 330, top: 210},
-            elbow: {left: 310, top: 160},
-            knee: {left: 300, top: 310},
-            foot: {left: 320, top: 370},
-            shoulder: {left: 290, top: 130},
-            pelv: {left: 260, top: 264}
-        }
-    };
-    utils.drawSkeleton(canvasNode);
+    utils.drawSkeleton(puppet.canvasNode);
     controller.on('frame', function(frame) {
         canvas.context.clearRect(0,0,canvas.el.width,canvas.el.height);
         var gesture, isHorizontal, state='stop', hand, finger, fingerPosition;
         for(var j=0; j<frame.hands.length; j++){
             hand=frame.hands[j];
-            /*if(hand.type==='left'){
-                var pos=utils.LeapToScene(frame, hand.palmPosition);
-                puppet.$body.css({'left': pos.x+'px', 'top': pos.y+'px'});
-            }*/
+            if(hand.type==='left'){
+                /*var pos=utils.LeapToScene(frame, hand.palmPosition);
+                puppet.$body.css({'left': pos.x+'px', 'top': pos.y+'px'});*/
+            }
             if(hand && puppet.initPuppet===1){
                 if(puppet.fingerInit.left.init===0 || puppet.fingerInit.right.init===0){
                     for(var i=0;i<hand.fingers.length; i++){
@@ -68,23 +50,23 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
                         switch(finger.type){
                             case 4:
                                 puppet.fingerMove=utils.nodeMove('.left.foot', puppet.fingerInit.left.foot, fingerPosition);
-                                canvasNode.left.foot.left=puppet.fingerMove.moveX;
-                                canvasNode.left.foot.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.left.foot.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.left.foot.top=puppet.fingerMove.moveY;
                                 break;
                             case 3:
                                 puppet.fingerMove=utils.nodeMove('.left.knee', puppet.fingerInit.left.knee, fingerPosition);
-                                canvasNode.left.knee.left=puppet.fingerMove.moveX;
-                                canvasNode.left.knee.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.left.knee.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.left.knee.top=puppet.fingerMove.moveY;
                                 break;
                             case 2:
                                 puppet.fingerMove=utils.nodeMove('.left.hand', puppet.fingerInit.left.hand, fingerPosition);
-                                canvasNode.left.hand.left=puppet.fingerMove.moveX;
-                                canvasNode.left.hand.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.left.hand.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.left.hand.top=puppet.fingerMove.moveY;
                                 break;
                             case 1:
                                 puppet.fingerMove=utils.nodeMove('.left.elbow', puppet.fingerInit.left.elbow, fingerPosition);
-                                canvasNode.left.elbow.left=puppet.fingerMove.moveX;
-                                canvasNode.left.elbow.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.left.elbow.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.left.elbow.top=puppet.fingerMove.moveY;
                                 break;
                             case 0:
                                 puppet.fingerMove={fingerClass:'.head'};
@@ -112,23 +94,23 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
                         switch (finger.type){
                             case 4:
                                 puppet.fingerMove=utils.nodeMove('.right.foot', puppet.fingerInit.right.foot, fingerPosition);
-                                canvasNode.right.foot.left=puppet.fingerMove.moveX;
-                                canvasNode.right.foot.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.right.foot.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.right.foot.top=puppet.fingerMove.moveY;
                                 break;
                             case 3:
                                 puppet.fingerMove=utils.nodeMove('.right.knee', puppet.fingerInit.right.knee, fingerPosition);
-                                canvasNode.right.knee.left=puppet.fingerMove.moveX;
-                                canvasNode.right.knee.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.right.knee.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.right.knee.top=puppet.fingerMove.moveY;
                                 break;
                             case 2:
                                 puppet.fingerMove=utils.nodeMove('.right.hand', puppet.fingerInit.right.hand, fingerPosition);
-                                canvasNode.right.hand.left=puppet.fingerMove.moveX;
-                                canvasNode.right.hand.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.right.hand.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.right.hand.top=puppet.fingerMove.moveY;
                                 break;
                             case 1:
                                 puppet.fingerMove=utils.nodeMove('.right.elbow', puppet.fingerInit.right.elbow, fingerPosition);
-                                canvasNode.right.elbow.left=puppet.fingerMove.moveX;
-                                canvasNode.right.elbow.top=puppet.fingerMove.moveY;
+                                puppet.canvasNode.right.elbow.left=puppet.fingerMove.moveX;
+                                puppet.canvasNode.right.elbow.top=puppet.fingerMove.moveY;
                                 break;
                             case 0:
                                 puppet.fingerMove={fingerClass:'.pelv'};
@@ -156,7 +138,7 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
                 }
             }
         }
-        utils.drawSkeleton(canvasNode);
+        utils.drawSkeleton(puppet.canvasNode);
         if(frame.hands.length===1){
             hand=frame.hands[0];
             if(hand.type==='left'){

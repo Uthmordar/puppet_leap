@@ -107,7 +107,7 @@ define(['puppet', 'canvas'], function(puppet, canvas) {
          * @returns {undefined}
          */
         drawSkeleton: function(canvasNode){
-            canvas.context.lineWidth = 5;
+            canvas.context.lineWidth = 10;
             canvas.context.strokeStyle = '#5c5930';
             canvas.context.fillStyle = '#5c5930';
             this.drawLine(canvasNode.left.hand, canvasNode.left.elbow);
@@ -118,16 +118,10 @@ define(['puppet', 'canvas'], function(puppet, canvas) {
             this.drawLine(canvasNode.left.knee, canvasNode.right.pelv);
             this.drawLine(canvasNode.left.elbow, canvasNode.left.shoulder);
             this.drawLine(canvasNode.right.elbow, canvasNode.right.shoulder);
-            canvas.context.lineWidth = 10;
-            /*this.drawLine(canvasNode.left.shoulder, canvasNode.right.shoulder);
+            canvas.context.lineWidth = 20;
             canvas.context.beginPath();
-            canvas.context.moveTo(canvasNode.right.pelv.left, canvasNode.right.pelv.top);
-            canvas.context.lineTo((canvasNode.right.shoulder.left + canvasNode.left.shoulder.left)*0.5, canvasNode.right.shoulder.top);
-            canvas.context.stroke();
-            canvas.context.closePath();*/
-            canvas.context.beginPath();
-            canvas.context.moveTo(canvasNode.left.shoulder.left,canvasNode.left.shoulder.top);
-            canvas.context.lineTo(canvasNode.right.shoulder.left,canvasNode.right.shoulder.top);
+            canvas.context.moveTo(canvasNode.left.shoulder.left,canvasNode.left.shoulder.top-3);
+            canvas.context.lineTo(canvasNode.right.shoulder.left,canvasNode.right.shoulder.top-3);
             canvas.context.lineTo(canvasNode.right.pelv.left,canvasNode.right.pelv.top + 30);
             canvas.context.closePath();
             canvas.context.fill();
