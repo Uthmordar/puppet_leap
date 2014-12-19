@@ -45,10 +45,10 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
         var gesture, isHorizontal, state='stop', hand, finger, fingerPosition;
         for(var j=0; j<frame.hands.length; j++){
             hand=frame.hands[j];
-            if(hand.type==='left'){
+            /*if(hand.type==='left'){
                 var pos=utils.LeapToScene(frame, hand.palmPosition);
                 puppet.$body.css({'left': pos.x+'px', 'top': pos.y+'px'});
-            }
+            }*/
             if(hand && puppet.initPuppet===1){
                 if(puppet.fingerInit.left.init===0 || puppet.fingerInit.right.init===0){
                     for(var i=0;i<hand.fingers.length; i++){

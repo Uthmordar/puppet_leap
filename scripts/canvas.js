@@ -4,8 +4,8 @@ define(['puppet'], function(puppet){
     var canvas  = document.createElement('canvas');
     var context = canvas.getContext('2d');
 
-    canvas.width  = 600;//window.innerWidth;
-    canvas.height = 600;//window.innerHeight;
+    canvas.width  = window.innerWidth - 500;
+    canvas.height = window.innerHeight;
     canvas.style.position = 'absolute';
     canvas.style.top      = 0;
     canvas.style.right    = 0;
