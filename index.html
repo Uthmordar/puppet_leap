@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+    <title>Leap Puppet</title>
+</head>
+<body>
+    <div id="body">
+        <div class="head"></div>
+        <div class="pelv"></div>
+    </div>
+    <aside class="aside">
+        <h2>Leap Puppet</h2>
+        <ul>
+            <li>1: put your hand above the leap</li>
+            <li>2: screen tap to launch node recognition</li>
+            <li>3: puppet's articulation will follow your fingers move</li>
+            <li>(you can swipe to redirect the puppet)</li>
+            <li>remove your hand from the leap reach will reset the standard hand position</li>
+        </ul>
+        <img src="img/hand_command.png" alt="command for puppet"/>
+    </aside>
+    <audio controls="controls" autoplay="autoplay" loop="loop" class="hidden"> 
+        <source src="puppet_master.mp3" type="audio/mp3" />  
+    </audio> 
+    <!-- Inclusion du framework LeapJS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script data-main="scripts/main" src="lib/require.min.js"></script>
+</body>
+</html>
