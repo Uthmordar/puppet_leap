@@ -1,4 +1,3 @@
-
 requirejs.config({
     paths: {
         'Leap': '../lib/leap-0.6.4'
@@ -12,7 +11,6 @@ requirejs.config({
 
 require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, canvas){
     'use strict';
-
     var controller=new Leap.Controller({
         enableGestures: true,
         frameEventName: 'animationFrame'
@@ -38,10 +36,6 @@ require(['Leap', 'utils', 'puppet', 'canvas'], function(Leap, utils, puppet, can
         }
         for(var j=0; j<frame.hands.length; j++){
             hand=frame.hands[j];
-            if(hand){
-                /*var pos=utils.LeapToScene(frame, hand.palmPosition);
-                puppet.$body.css({'left': pos.x+'px', 'top': pos.y+'px'});*/
-            }
             if(hand && puppet.initPuppet===1){
                 if(puppet.fingerInit.left.init===0 || puppet.fingerInit.right.init===0){
                     var pos=utils.LeapToScene(frame, hand.palmPosition);

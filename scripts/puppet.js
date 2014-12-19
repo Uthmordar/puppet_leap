@@ -1,6 +1,5 @@
 define([], function() {
     'use strict';
-    
     return {
         $body: $('#body'),
         bodyWidth: null,

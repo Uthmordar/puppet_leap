@@ -1,7 +1,7 @@
 define(['puppet', 'canvas'], function(puppet, canvas) {
     'use strict';
     return {
-        LeapToScene2 : function(frame, positionTbl) {
+        LeapToScene2: function(frame, positionTbl) {
             var normalizedPosition = frame.interactionBox.normalizePoint(positionTbl, true);
             return {
                 x: normalizedPosition[0] * window.innerWidth,
